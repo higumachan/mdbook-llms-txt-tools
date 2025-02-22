@@ -2,6 +2,13 @@
 name = "mdbook-llms-txt-tools"
 version = "0.1.0"
 edition = "2021"
+description = "A tool to convert mdbook to llmstxt.org format"
+license = "MIT"
+repository = "https://github.com/higumachan/mdbook-llms-txt"
+authors = ["Yuta Hinokuma <yuta.hinokuma725@gmail.com>"]
+keywords = ["mdbook", "llms", "documentation", "converter"]
+categories = ["command-line-utilities", "development-tools", "text-processing"]
+readme = "README.md"
 
 [features]
 debug-tool = []
