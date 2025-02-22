@@ -62,7 +62,6 @@ fn process_book_item(item: &BookItem, output: &mut String) {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use similar_asserts::assert_eq;
 
     #[test]
     fn test_render_llm_txt_full() -> Result<()> {
@@ -73,7 +72,11 @@ mod tests {
 
         // 出力に必要なヘッダー情報が含まれていることを確認
         assert!(output.contains("# サンプルブック"), "Check: {}", output);
-        assert!(output.contains("> これはサンプルブックです。"), "Check: {}", output);
+        assert!(
+            output.contains("> これはサンプルブックです。"),
+            "Check: {}",
+            output
+        );
         assert!(output.contains("# はじめに"), "Check: {}", output);
 
         Ok(())
@@ -87,16 +90,32 @@ mod tests {
         let output = render_llm_txt_full(&ctx)?;
 
         // タイトルと説明が含まれていることを確認
-        assert!(output.contains("# 深い階層のテストブック"), "Check: {}", output);
-        assert!(output.contains("> 4段以上の深い階層構造を持つテスト用のブックです。"), "Check: {}", output);
+        assert!(
+            output.contains("# 深い階層のテストブック"),
+            "Check: {}",
+            output
+        );
+        assert!(
+            output.contains("> 4段以上の深い階層構造を持つテスト用のブックです。"),
+            "Check: {}",
+            output
+        );
 
         // 深い階層のコンテンツが含まれていることを確認
         assert!(output.contains("# 1.1.1.1.1 細目"), "Check: {}", output);
-        assert!(output.contains("これは1.1.1.1.1細目のコンテンツです。"), "Check: {}", output);
+        assert!(
+            output.contains("これは1.1.1.1.1細目のコンテンツです。"),
+            "Check: {}",
+            output
+        );
 
         // 並列の階層構造も含まれていることを確認
         assert!(output.contains("# 1.2.1.1 目"), "Check: {}", output);
-        assert!(output.contains("これは1.2.1.1目のコンテンツです。"), "Check: {}", output);
+        assert!(
+            output.contains("これは1.2.1.1目のコンテンツです。"),
+            "Check: {}",
+            output
+        );
 
         Ok(())
     }
