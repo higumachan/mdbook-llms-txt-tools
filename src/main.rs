@@ -2,7 +2,9 @@ use anyhow::Result;
 use clap::{Arg, Command};
 use mdbook::book::BookItem;
 use mdbook::renderer::RenderContext;
+use std::fs;
 use std::io;
+use std::path::PathBuf;
 
 fn main() -> Result<()> {
     env_logger::init();
@@ -27,7 +29,9 @@ fn main() -> Result<()> {
     let ctx = RenderContext::from_json(&mut stdin)?;
 
     let output = render_llm_txt(&ctx)?;
-    println!("{}", output);
+
+    let output_path = PathBuf::from(&ctx.destination).join("llms.txt");
+    fs::write(output_path, output)?;
 
     Ok(())
 }
@@ -37,7 +41,7 @@ pub fn render_llm_txt(ctx: &RenderContext) -> anyhow::Result<String> {
     let book = &ctx.book;
 
     // book.tomlの内容を確認
-    eprintln!("Config: {}", serde_json::to_string_pretty(&ctx.config)?);
+    println!("Config: {:?}", serde_json::to_string_pretty(&ctx)?);
 
     // book.tomlのtitleを使用
     let title = ctx
@@ -93,14 +97,7 @@ mod tests {
     use super::*;
     use similar_asserts::assert_eq;
 
-    #[test]
-    fn simple_project_json() -> Result<()> {
-        let json_str = include_str!("../assets/test_render_contexts/simple-project.json");
-        let ctx: RenderContext = serde_json::from_str(json_str)?;
-
-        let output = render_llm_txt(&ctx)?;
-
-        let expected = "\
+    const SAMPLE_RENDERED_OUTPUT: &str = "\
 # サンプルブック
 
 > これはサンプルブックです。
@@ -119,6 +116,15 @@ mod tests {
 - [第2章: 機能紹介](chapter_2.md)
 
 ";
+
+    #[test]
+    fn simple_project_json() -> Result<()> {
+        let json_str = include_str!("../assets/test_render_contexts/simple-project.json");
+        let ctx: RenderContext = serde_json::from_str(json_str)?;
+
+        let output = render_llm_txt(&ctx)?;
+
+        let expected = SAMPLE_RENDERED_OUTPUT;
 
         assert_eq!(output, expected);
         Ok(())

@@ -26,5 +26,3 @@
 画像も挿入できます（例）：
 
 ![プレースホルダー画像](https://via.placeholder.com/150) 
-
-{% not_include %}
