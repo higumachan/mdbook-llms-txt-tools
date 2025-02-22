@@ -119,7 +119,7 @@ mod tests {
 
     #[test]
     fn simple_project_json() -> Result<()> {
-        let json_str = include_str!("../assets/test_render_contexts/simple-project.json");
+        let json_str = include_str!("../../assets/test_render_contexts/simple-project.json");
         let ctx: RenderContext = serde_json::from_str(json_str)?;
 
         let output = render_llm_txt(&ctx)?;

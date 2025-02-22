@@ -1,5 +1,5 @@
 [package]
-name = "mdbook-llms-txt"
+name = "mdbook-llms-txt-tools"
 version = "0.1.0"
 edition = "2021"
 
@@ -9,7 +9,19 @@ serde_json = "1.0"
 anyhow = "1.0"
 log = "0.4"
 env_logger = "0.10"
-clap = "4.4"
+clap = { version = "4.4", features = ["derive"] }
 
 [dev-dependencies]
 similar-asserts = "1.5"
+
+[[bin]]
+name = "mdbook-llms-txt"
+path = "src/bin/mdbook-llms-txt.rs"
+
+[[bin]]
+name = "mdbook-llms-txt-full"
+path = "src/bin/mdbook-llms-txt-full.rs"
+
+[[bin]]
+name = "mdbook-debug-context-export"
+path = "src/bin/debug_context_export.rs"

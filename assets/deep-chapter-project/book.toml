@@ -1,0 +1,10 @@
+[book]
+title = "深い階層のテストブック"
+description = "4段以上の深い階層構造を持つテスト用のブックです。"
+authors = ["Test Author"]
+language = "ja"
+
+[output.html]
+
+[output.llms-txt]
+[output.debug-context-export]

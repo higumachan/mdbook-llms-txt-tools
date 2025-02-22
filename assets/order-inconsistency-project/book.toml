@@ -6,3 +6,4 @@ multilingual = false
 src = "src"
 
 [output.llms-txt]
+[output.debug-context-export]
