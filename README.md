@@ -1,42 +1,41 @@
 # mdbook-llms-txt
 
-mdbookをllmstxt.org形式に変換するためのツールです。
+A tool to convert mdbook documents to llmstxt.org format.
 
-## 概要
+## Overview
 
-このツールは[mdbook](https://rust-lang.github.io/mdBook/)で作成されたドキュメントを[llmstxt.org](https://llmstxt.org/)形式に変換するためのプリプロセッサです。これにより、mdbookで作成された技術文書をLLMsに最適化された形式で共有することができます。
+This tool is a preprocessor that converts documents created with [mdbook](https://rust-lang.github.io/mdBook/) into [llmstxt.org](https://llmstxt.org/) format. This allows you to share technical documentation created with mdbook in a format optimized for LLMs.
 
-## インストール方法
+## Installation
 
 ```bash
 cargo install mdbook-llms-txt-tools
 ```
 
-## 使用方法
+## Usage
 
-1. プロジェクトの`book.toml`に以下の設定を追加します：
+1. Add the following configuration to your project's `book.toml`:
 
 ```toml
-# 基本的なllmstxt.org形式の出力
+# Basic llmstxt.org format output
 [output.llms-txt]
 
-# より詳細な情報を含むllmstxt.org形式の出力
+# Detailed llmstxt.org format output with additional information
 [output.llms-full-txt]
-
 ```
 
-2. 通常通り`mdbook build`を実行すると、選択した出力形式でファイルが生成されます。
+2. Run `mdbook build` as usual, and files will be generated in your chosen output format.
 
-## 出力形式について
+## Output Formats
 
-- `llms-txt`: 基本的なllmstxt.org形式の出力を生成します。一般的な用途に適しています。
-- `llms-full-txt`: より詳細な情報を含むllmstxt.org形式の出力を生成します。より高度な分析や処理が必要な場合に使用します。
+- `llms-txt`: Generates basic llmstxt.org format output. Suitable for general use.
+- `llms-full-txt`: Generates llmstxt.org format output with more detailed information. Use this when more advanced analysis or processing is needed.
 
-## ライセンス
+## License
 
 MIT
 
-## コントリビューション
+## Contributing
 
-バグ報告や機能要望は[GitHub Issues](https://github.com/higumachan/mdbook-llms-txt/issues)にお願いします。
-プルリクエストも歓迎です。 
+Please report bugs and feature requests on [GitHub Issues](https://github.com/higumachan/mdbook-llms-txt/issues).
+Pull requests are welcome. 
