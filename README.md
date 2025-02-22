@@ -4,7 +4,7 @@ A tool to convert mdbook documents to llmstxt.org format.
 
 ## Overview
 
-This tool is a preprocessor that converts documents created with [mdbook](https://rust-lang.github.io/mdBook/) into [llmstxt.org](https://llmstxt.org/) format. This allows you to share technical documentation created with mdbook in a format optimized for LLMs.
+This tool is a renderer that converts documents created with [mdbook](https://rust-lang.github.io/mdBook/) into [llmstxt.org](https://llmstxt.org/) format. This allows you to share technical documentation created with mdbook in a format optimized for LLMs.
 
 ## Installation
 
