@@ -7,4 +7,5 @@ language = "ja"
 [output.html]
 
 [output.llms-txt]
+[output.llms-full-txt]
 [output.debug-context-export]

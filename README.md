@@ -9,7 +9,7 @@ mdbookをllmstxt.org形式に変換するためのツールです。
 ## インストール方法
 
 ```bash
-cargo install mdbook-llms-txt
+cargo install mdbook-llms-txt-tools
 ```
 
 ## 使用方法
@@ -17,11 +17,20 @@ cargo install mdbook-llms-txt
 1. プロジェクトの`book.toml`に以下の設定を追加します：
 
 ```toml
-[preprocessor.llms-txt]
-command = "mdbook-llms-txt"
+# 基本的なllmstxt.org形式の出力
+[output.llms-txt]
+
+# より詳細な情報を含むllmstxt.org形式の出力
+[output.llms-full-txt]
+
 ```
 
-2. 通常通り`mdbook build`を実行すると、出力されるHTMLがllmstxt.org形式に変換されます。
+2. 通常通り`mdbook build`を実行すると、選択した出力形式でファイルが生成されます。
+
+## 出力形式について
+
+- `llms-txt`: 基本的なllmstxt.org形式の出力を生成します。一般的な用途に適しています。
+- `llms-full-txt`: より詳細な情報を含むllmstxt.org形式の出力を生成します。より高度な分析や処理が必要な場合に使用します。
 
 ## ライセンス
 

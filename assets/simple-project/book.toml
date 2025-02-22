@@ -12,4 +12,5 @@ preferred-dark-theme = "navy"
 git-repository-url = "https://github.com/higumachan/mdbook-llms-txt"
 
 [output.llms-txt]
+[output.llms-full-txt]
 [output.debug-context-export]
