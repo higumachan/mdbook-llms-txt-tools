@@ -10,13 +10,13 @@ fn main() -> Result<()> {
     let mut stdin = io::stdin();
     let ctx = RenderContext::from_json(&mut stdin)?;
 
-    // 出力先ディレクトリを作成
+    // Create output directory
     let output_path = PathBuf::from(&ctx.destination).join("context.json");
     if let Some(parent) = output_path.parent() {
         fs::create_dir_all(parent)?;
     }
 
-    // JSONとして出力
+    // Output as JSON
     let json = serde_json::to_string_pretty(&ctx)?;
     fs::write(&output_path, json)?;
 

@@ -1,2 +1,4 @@
 /target
-book
+**/book/**
+!**/book/**/
+!**/book/**/context.json

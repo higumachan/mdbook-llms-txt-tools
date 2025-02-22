@@ -40,38 +40,34 @@ pub fn render_llm_txt(ctx: &RenderContext) -> anyhow::Result<String> {
     let mut output = String::new();
     let book = &ctx.book;
 
-    // book.tomlの内容を確認
-    println!("Config: {:?}", serde_json::to_string_pretty(&ctx)?);
-
-    // book.tomlのtitleを使用
+    // Use the title from book.toml
     let title = ctx
         .config
         .book
         .title
         .as_deref()
         .expect("book.title is required");
-    eprintln!("Title: {}", title);
 
     output.push_str(&format!("# {}\n\n", title));
 
-    // descriptionがある場合は追加
+    // Add description if exists
     if let Some(description) = &ctx.config.book.description {
         output.push_str(&format!("> {}\n\n", description));
     }
 
-    // チャプターの処理
+    // Process chapters
     for item in &book.sections {
         match item {
             BookItem::Chapter(chapter) => {
-                // セクション名の追加
+                // Add section name
                 output.push_str(&format!("## {}\n\n", chapter.name));
 
-                // チャプターの内容をリンクとして追加
+                // Add chapter content as a link
                 if let Some(path) = &chapter.path {
                     output.push_str(&format!("- [{}]({})\n", chapter.name, path.display()));
                 }
 
-                // サブチャプターの処理
+                // Process subchapters
                 for sub_item in &chapter.sub_items {
                     if let BookItem::Chapter(sub_chapter) = sub_item {
                         if let Some(path) = &sub_chapter.path {

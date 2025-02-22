@@ -23,7 +23,7 @@ pub fn render_llm_txt_full(ctx: &RenderContext) -> anyhow::Result<String> {
     let mut output = String::new();
     let book = &ctx.book;
 
-    // book.tomlのtitleを使用
+    // Use the title from book.toml
     let title = ctx
         .config
         .book
@@ -33,12 +33,12 @@ pub fn render_llm_txt_full(ctx: &RenderContext) -> anyhow::Result<String> {
 
     output.push_str(&format!("# {}\n\n", title));
 
-    // descriptionがある場合は追加
+    // Add description if exists
     if let Some(description) = &ctx.config.book.description {
         output.push_str(&format!("> {}\n\n", description));
     }
 
-    // チャプターの処理
+    // Process chapters
     for item in &book.sections {
         process_book_item(item, &mut output);
     }
@@ -72,9 +72,9 @@ mod tests {
         let output = render_llm_txt_full(&ctx)?;
 
         // 出力に必要なヘッダー情報が含まれていることを確認
-        assert!(output.contains("# サンプルブック"));
-        assert!(output.contains("> これはサンプルブックです。"));
-        assert!(output.contains("## はじめに"));
+        assert!(output.contains("# サンプルブック"), "Check: {}", output);
+        assert!(output.contains("> これはサンプルブックです。"), "Check: {}", output);
+        assert!(output.contains("# はじめに"), "Check: {}", output);
 
         Ok(())
     }
@@ -87,16 +87,16 @@ mod tests {
         let output = render_llm_txt_full(&ctx)?;
 
         // タイトルと説明が含まれていることを確認
-        assert!(output.contains("# 深い階層のテストブック"));
-        assert!(output.contains("> 4段以上の深い階層構造を持つテスト用のブックです。"));
+        assert!(output.contains("# 深い階層のテストブック"), "Check: {}", output);
+        assert!(output.contains("> 4段以上の深い階層構造を持つテスト用のブックです。"), "Check: {}", output);
 
         // 深い階層のコンテンツが含まれていることを確認
-        assert!(output.contains("# 1.1.1.1.1 細目"));
-        assert!(output.contains("これは1.1.1.1.1細目のコンテンツです。"));
+        assert!(output.contains("# 1.1.1.1.1 細目"), "Check: {}", output);
+        assert!(output.contains("これは1.1.1.1.1細目のコンテンツです。"), "Check: {}", output);
 
         // 並列の階層構造も含まれていることを確認
-        assert!(output.contains("# 1.2.1.1 目"));
-        assert!(output.contains("これは1.2.1.1目のコンテンツです。"));
+        assert!(output.contains("# 1.2.1.1 目"), "Check: {}", output);
+        assert!(output.contains("これは1.2.1.1目のコンテンツです。"), "Check: {}", output);
 
         Ok(())
     }
