@@ -1,0 +1,5 @@
+---
+description: Project description
+globs: *
+---
+このProjectは @mdbook を @https://llmstxt.org/ に変換するためのツールを作成します。

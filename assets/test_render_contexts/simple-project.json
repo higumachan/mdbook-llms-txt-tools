@@ -1,0 +1,84 @@
+{
+    "version": "0.4.45",
+    "root": "/Users/yuta/ghq/github.com/higumachan/mdbook-llms-txt/assets/simple-project",
+    "book": {
+        "sections": [
+            {
+                "Chapter": {
+                    "name": "はじめに",
+                    "content": "# はじめに\n\nこのブックは mdbook のサンプルプロジェクトです。mdbook は Rust で書かれた素晴らしいドキュメント生成ツールで、\nMarkdown からきれいな HTML ドキュメントを生成することができます。\n\n## 特徴\n\n- Markdown による執筆\n- シンプルで美しい HTML 出力\n- 検索機能\n- コードハイライト\n- 数式のサポート\n\n## 使い方\n\nこのサンプルプロジェクトは以下のコマンドで構築できます：\n\n```bash\nmdbook build\n```\n\nプレビューを行うには：\n\n```bash\nmdbook serve\n``` ",
+                    "number": null,
+                    "sub_items": [],
+                    "path": "introduction.md",
+                    "source_path": "introduction.md",
+                    "parent_names": []
+                }
+            },
+            {
+                "Chapter": {
+                    "name": "第1章: サンプル",
+                    "content": "# 第1章: サンプル\n\nこの章では、mdbook で使用できる基本的なMarkdown記法を紹介します。\n\n## テキストスタイル\n\nテキストは **太字** や *イタリック* で装飾できます。\nまた、`コードスパン` も使用できます。\n\n## リスト\n\n順序なしリスト：\n- 項目1\n- 項目2\n- 項目3\n\n順序付きリスト：\n1. 最初の項目\n2. 二番目の項目\n3. 三番目の項目\n\n## コードブロック\n\n```python\ndef hello_world():\n    ",
+                    "number": [
+                        1
+                    ],
+                    "sub_items": [
+                        {
+                            "Chapter": {
+                                "name": "1.1 サブセクション",
+                                "content": "# 1.1 サブセクション\n\nサブセクションでは、より詳細な内容を記述することができます。\n\n## 表の使用例\n\n| 列1 | 列2 | 列3 |\n|-----|-----|-----|\n| A1 | B1 | C1 |\n| A2 | B2 | C2 |\n| A3 | B3 | C3 |\n\n## 引用\n\n> これは引用文です。\n> 複数行に渡って引用することができます。\n> \n> 空行を入れることもできます。\n\n## リンク\n\n[MDBook のドキュメント](https://rust-lang.github.io/mdBook/)を参照してください。\n\n## 画像\n\n画像も挿入できます（例）：\n\n![プレースホルダー画像](https://via.placeholder.com/150) ",
+                                "number": [
+                                    1,
+                                    1
+                                ],
+                                "sub_items": [],
+                                "path": "chapter_1/section_1.md",
+                                "source_path": "chapter_1/section_1.md",
+                                "parent_names": [
+                                    "第1章: サンプル"
+                                ]
+                            }
+                        }
+                    ],
+                    "path": "chapter_1.md",
+                    "source_path": "chapter_1.md",
+                    "parent_names": []
+                }
+            },
+            {
+                "Chapter": {
+                    "name": "第2章: 機能紹介",
+                    "content": "# 第2章: 機能紹介\n\nこの章では、mdbook の高度な機能をいくつか紹介します。\n\n## シンタックスハイライト\n\n様々な言語のコードブロックに対応しています：\n\n```rust\nfn main() {\n    println!(\"Hello from Rust!\");\n}\n```\n\n```javascript\nfunction greet(name) {\n    console.log(`Hello, ${name}!`);\n}\n```\n\n## アドモニション\n\n> **Note**\n> これは注記です。重要な情報を強調するのに使用しまを検索することができます。\n\n## カスタマイズ\n\n`book.toml` ファイルを編集することで、様々な設定をカスタマイズできます：\n\n- テーマの変更\n- プラグインの追加\n- 出力形式の設定\n- その他の設定 ",
+                    "number": [
+                        2
+                    ],
+                    "sub_items": [],
+                    "path": "chapter_2.md",
+                    "source_path": "chapter_2.md",
+                    "parent_names": []
+                }
+            }
+        ],
+        "__non_exhaustive": null
+    },
+    "config": {
+        "book": {
+            "authors": [
+                "Example Author"
+            ],
+            "language": "ja",
+            "multilingual": false,
+            "src": "src",
+            "title": "サンプルブック",
+            "description": "これはサンプルブックです。"
+        },
+        "output": {
+            "html": {
+                "default-theme": "light",
+                "git-repository-url": "https://github.com/higumachan/mdbook-llms-txt",
+                "preferred-dark-theme": "navy"
+            },
+            "llms-txt": {}
+        }
+    },
+    "destination": "/Users/yuta/ghq/github.com/higumachan/mdbook-llms-txt/assets/simple-project/book/llms-txt"
+}

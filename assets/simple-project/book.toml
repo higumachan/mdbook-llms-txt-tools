@@ -1,0 +1,16 @@
+[book]
+authors = ["Example Author"]
+language = "ja"
+multilingual = false
+src = "src"
+title = "サンプルブック"
+description = "これはサンプルブックです。"
+
+[output.html]
+default-theme = "light"
+preferred-dark-theme = "navy"
+git-repository-url = "https://github.com/higumachan/mdbook-llms-txt"
+
+[output.llms-txt]
+
+[output.markdown]
