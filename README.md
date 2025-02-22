@@ -6,6 +6,15 @@ A tool to convert mdbook documents to llmstxt.org format.
 
 This tool is a renderer that converts documents created with [mdbook](https://rust-lang.github.io/mdBook/) into [llmstxt.org](https://llmstxt.org/) format. This allows you to share technical documentation created with mdbook in a format optimized for LLMs.
 
+## Features
+
+### Implemented Features
+- ✅ Basic llms.txt rendering
+- ✅ llms-full.txt rendering with detailed information
+
+### Planned Features
+- 🚧 Additional metadata support specifically for llms.txt format
+
 ## Installation
 
 ```bash
