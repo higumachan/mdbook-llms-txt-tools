@@ -7,7 +7,10 @@ use std::io;
 use std::path::PathBuf;
 
 #[derive(Parser)]
-#[command(name = "mdbook-llms-txt", about = "A mdbook backend for generating llms.txt files")]
+#[command(
+    name = "mdbook-llms-txt",
+    about = "A mdbook backend for generating llms.txt files"
+)]
 struct Cli {
     #[command(subcommand)]
     command: Option<Commands>,
@@ -49,6 +52,19 @@ pub fn render_llm_txt(ctx: &RenderContext) -> anyhow::Result<String> {
     let mut output = String::new();
     let book = &ctx.book;
 
+    // Get document_root_uri from config
+    let document_root_uri = match ctx
+        .config
+        .get("output.llms-txt.document_root_uri")
+        .and_then(|v| v.as_str())
+    {
+        Some(uri) => uri,
+        None => {
+            log::warn!("document_root_uri is not set in book.toml. Links will be generated without base URL.");
+            ""
+        }
+    };
+
     // Use the title from book.toml
     let title = ctx
         .config
@@ -73,7 +89,12 @@ pub fn render_llm_txt(ctx: &RenderContext) -> anyhow::Result<String> {
 
                 // Add chapter content as a link
                 if let Some(path) = &chapter.path {
-                    output.push_str(&format!("- [{}]({})\n", chapter.name, path.display()));
+                    output.push_str(&format!(
+                        "- [{}]({}/{})\n",
+                        chapter.name,
+                        document_root_uri,
+                        path.display()
+                    ));
                 }
 
                 // Process subchapters
@@ -81,8 +102,9 @@ pub fn render_llm_txt(ctx: &RenderContext) -> anyhow::Result<String> {
                     if let BookItem::Chapter(sub_chapter) = sub_item {
                         if let Some(path) = &sub_chapter.path {
                             output.push_str(&format!(
-                                "- [{}]({})\n",
+                                "- [{}]({}/{})\n",
                                 sub_chapter.name,
+                                document_root_uri,
                                 path.display()
                             ));
                         }
@@ -109,16 +131,16 @@ mod tests {
 
 ## はじめに
 
-- [はじめに](introduction.md)
+- [はじめに](https://example.com/docs/introduction.md)
 
 ## 第1章: サンプル
 
-- [第1章: サンプル](chapter_1.md)
-- [1.1 サブセクション](chapter_1/section_1.md)
+- [第1章: サンプル](https://example.com/docs/chapter_1.md)
+- [1.1 サブセクション](https://example.com/docs/chapter_1/section_1.md)
 
 ## 第2章: 機能紹介
 
-- [第2章: 機能紹介](chapter_2.md)
+- [第2章: 機能紹介](https://example.com/docs/chapter_2.md)
 
 ";
 

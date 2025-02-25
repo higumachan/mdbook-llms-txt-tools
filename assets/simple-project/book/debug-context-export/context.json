@@ -72,13 +72,17 @@
       "title": "サンプルブック"
     },
     "output": {
-      "debug-context-export": {},
+      "debug-context-export": {
+        "document_root_uri": "https://example.com/docs"
+      },
       "html": {
         "default-theme": "light",
         "git-repository-url": "https://github.com/higumachan/mdbook-llms-txt",
         "preferred-dark-theme": "navy"
       },
-      "llms-txt": {}
+      "llms-txt": {
+        "document_root_uri": "https://example.com/docs"
+      }
     }
   },
   "destination": "/Users/yuta/ghq/github.com/higumachan/mdbook-llms-txt/assets/simple-project/book/debug-context-export"

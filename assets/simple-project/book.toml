@@ -12,5 +12,9 @@ preferred-dark-theme = "navy"
 git-repository-url = "https://github.com/higumachan/mdbook-llms-txt"
 
 [output.llms-txt]
-[output.llms-full-txt]
+document_root_uri = "https://example.com/docs"
+
+# [output.llms-full-txt]
+
 [output.debug-context-export]
+document_root_uri = "https://example.com/docs"
