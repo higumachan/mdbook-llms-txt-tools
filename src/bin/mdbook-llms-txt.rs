@@ -1,23 +1,32 @@
 use anyhow::Result;
-use clap::{Arg, Command};
+use clap::{Parser, Subcommand};
 use mdbook::book::BookItem;
 use mdbook::renderer::RenderContext;
 use std::fs;
 use std::io;
 use std::path::PathBuf;
 
+#[derive(Parser)]
+#[command(name = "mdbook-llms-txt", about = "A mdbook backend for generating llms.txt files")]
+struct Cli {
+    #[command(subcommand)]
+    command: Option<Commands>,
+}
+
+#[derive(Subcommand)]
+enum Commands {
+    Supports {
+        #[arg(required = true)]
+        renderer: String,
+    },
+}
+
 fn main() -> Result<()> {
     env_logger::init();
 
-    let matches = Command::new("mdbook-llms-txt")
-        .about("A mdbook backend for generating llms.txt files")
-        .subcommand(Command::new("supports").arg(Arg::new("renderer").required(true)))
-        .get_matches();
+    let cli = Cli::parse();
 
-    if let Some(sub_args) = matches.subcommand_matches("supports") {
-        let renderer = sub_args
-            .get_one::<String>("renderer")
-            .expect("Required argument");
+    if let Some(Commands::Supports { renderer }) = cli.command {
         if renderer == "llms-txt" {
             std::process::exit(0);
         } else {
