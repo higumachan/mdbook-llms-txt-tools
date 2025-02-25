@@ -1,12 +1,38 @@
 use anyhow::Result;
+use clap::{Parser, Subcommand};
 use mdbook::book::BookItem;
 use mdbook::renderer::RenderContext;
 use std::fs;
 use std::io;
 use std::path::PathBuf;
 
+#[derive(Parser)]
+#[command(name = "mdbook-llms-txt-full", about = "A mdbook backend for generating llms-full.txt files")]
+struct Cli {
+    #[command(subcommand)]
+    command: Option<Commands>,
+}
+
+#[derive(Subcommand)]
+enum Commands {
+    Supports {
+        #[arg(required = true)]
+        renderer: String,
+    },
+}
+
 fn main() -> Result<()> {
     env_logger::init();
+
+    let cli = Cli::parse();
+
+    if let Some(Commands::Supports { renderer }) = cli.command {
+        if renderer == "llms-txt-full" {
+            std::process::exit(0);
+        } else {
+            std::process::exit(1);
+        }
+    }
 
     let mut stdin = io::stdin();
     let ctx = RenderContext::from_json(&mut stdin)?;
